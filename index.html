@@ -136,10 +136,75 @@
             outline: 2px solid transparent;
             outline-offset: 2px;
         }
+
+        /* Roblox Avatar Background */
+        .roblox-avatar-bg {
+            position: fixed;
+            top: 50%;
+            right: -100px;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 600px;
+            background: url('https://images.pexels.com/photos/163064/play-stone-network-networked-interactive-163064.jpeg') center/contain no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) translateX(0px); }
+            50% { transform: translateY(-50%) translateX(-20px); }
+        }
+
+        /* Confetti Particles */
+        .confetti-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            pointer-events: none;
+            z-index: 9999;
+            border-radius: 50%;
+            animation: confetti-fall 2s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Watermark Link Styling */
+        .watermark-link {
+            color: rgba(59, 130, 246, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.8em;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .watermark-link:hover {
+            color: rgba(59, 130, 246, 1);
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Custom cursor trail */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23a855f7" opacity="0.8"/><circle cx="10" cy="10" r="4" fill="%23ffffff"/></svg>') 10 10, auto;
+        }
     </style>
 </head>
 <body>
     <div class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
+        <!-- Roblox Avatar Background -->
+        <div class="roblox-avatar-bg"></div>
+
         <!-- Animated background elements -->
         <div class="absolute inset-0 overflow-hidden">
             <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
@@ -433,10 +498,13 @@
 
                     <!-- Footer -->
                     <div class="text-center mt-16">
-                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-lg border border-gray-700/50">
+                        <div class="inline-flex flex-col items-center px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-lg border border-gray-700/50">
                             <span class="text-gray-400 text-sm">
                                 Created by <span class="text-blue-400 font-medium">@IEatToes0001</span>
                             </span>
+                            <a href="https://www.youtube.com/@SocialFollowersGrowth" target="_blank" rel="noopener noreferrer" class="watermark-link">
+                                🔗 Visit My Profile
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -450,6 +518,64 @@
             document.getElementById('scripts-hub').style.display = 'block';
             document.body.style.overflow = 'auto';
         }
+
+        // Confetti cursor effect
+        let confettiColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd', '#98d8c8'];
+        let confettiCount = 0;
+        let maxConfetti = 50;
+
+        function createConfetti(x, y) {
+            if (confettiCount >= maxConfetti) return;
+            
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-particle';
+            confetti.style.left = x + 'px';
+            confetti.style.top = y + 'px';
+            confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+            
+            // Random size and shape
+            const size = Math.random() * 6 + 4;
+            confetti.style.width = size + 'px';
+            confetti.style.height = size + 'px';
+            
+            // Random shape (circle or square)
+            if (Math.random() > 0.5) {
+                confetti.style.borderRadius = '50%';
+            }
+            
+            document.body.appendChild(confetti);
+            confettiCount++;
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                if (confetti.parentNode) {
+                    confetti.parentNode.removeChild(confetti);
+                    confettiCount--;
+                }
+            }, 2000);
+        }
+
+        // Throttle confetti creation
+        let lastConfettiTime = 0;
+        document.addEventListener('mousemove', function(e) {
+            const now = Date.now();
+            if (now - lastConfettiTime > 100) { // Create confetti every 100ms
+                createConfetti(e.clientX, e.clientY);
+                lastConfettiTime = now;
+            }
+        });
+
+        // Create burst of confetti on click
+        document.addEventListener('click', function(e) {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createConfetti(
+                        e.clientX + (Math.random() - 0.5) * 20,
+                        e.clientY + (Math.random() - 0.5) * 20
+                    );
+                }, i * 50);
+            }
+        });
     </script>
 </body>
 </html>
