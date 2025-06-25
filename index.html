@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Roblox Scripts Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .hover-scale-102:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .group:hover .group-hover-translate-x-1 {
+            transform: translateX(0.25rem);
+        }
+
+        .group:hover .group-hover-opacity-50 {
+            opacity: 0.5;
+        }
+
+        .group:hover .group-hover-text-white {
+            color: white;
+        }
+
+        .group:hover .group-hover-scale-105 {
+            transform: scale(1.05);
+        }
+
+        .transition-all {
+            transition-property: all;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        .transition-transform {
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        .transition-colors {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        .transition-opacity {
+            transition-property: opacity;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 300ms;
+        }
+
+        .duration-300 {
+            transition-duration: 300ms;
+        }
+
+        .duration-500 {
+            transition-duration: 500ms;
+        }
+
+        .backdrop-blur-lg {
+            backdrop-filter: blur(16px);
+        }
+
+        .mix-blend-multiply {
+            mix-blend-mode: multiply;
+        }
+
+        .filter {
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+        }
+
+        .blur-xl {
+            --tw-blur: blur(24px);
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+        }
+
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .text-transparent {
+            color: transparent;
+        }
+
+        .hover\:scale-105:hover {
+            transform: scale(1.05);
+        }
+
+        .hover\:shadow-2xl:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .shadow-purple-500\/25 {
+            box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.25);
+        }
+
+        .hover\:shadow-purple-500\/25:hover {
+            box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.25);
+        }
+
+        .focus\:ring-2:focus {
+            box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        }
+
+        .focus\:ring-purple-500:focus {
+            --tw-ring-color: rgb(168 85 247);
+        }
+
+        .focus\:ring-offset-2:focus {
+            --tw-ring-offset-width: 2px;
+        }
+
+        .focus\:ring-offset-gray-900:focus {
+            --tw-ring-offset-color: rgb(17 24 39);
+        }
+
+        .focus\:outline-none:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse"></div>
+        </div>
+
+        <!-- Grid pattern overlay -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+
+        <div class="relative z-10">
+            <!-- Welcome Screen -->
+            <div id="welcome-screen" class="min-h-screen flex items-center justify-center px-4">
+                <div class="text-center space-y-8 max-w-4xl mx-auto">
+                    <div class="space-y-4">
+                        <h1 class="text-6xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+                            Roblox Scripts
+                        </h1>
+                        <p class="text-xl md:text-2xl text-gray-300 font-light">
+                            Premium collection of the most powerful scripts
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="flex justify-center space-x-4 text-sm text-gray-400">
+                            <span class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                <span>Always Updated</span>
+                            </span>
+                            <span class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                                <span>No Key Required</span>
+                            </span>
+                            <span class="flex items-center space-x-2">
+                                <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                                <span>Premium Quality</span>
+                            </span>
+                        </div>
+                        
+                        <button
+                            onclick="showScripts()"
+                            class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl hover:from-blue-500 hover:to-purple-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+                        >
+                            <span class="text-lg">Enter Hub</span>
+                            <svg class="w-5 h-5 ml-2 transition-transform group-hover-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-30 group-hover-opacity-50 transition-opacity"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scripts Hub -->
+            <div id="scripts-hub" class="min-h-screen py-12 px-4 sm:px-6 lg:px-8" style="display: none;">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Header -->
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
+                            Script Hub
+                        </h1>
+                        <p class="text-xl text-gray-300 font-light">
+                            Choose your adventure
+                        </p>
+                    </div>
+
+                    <!-- Scripts Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Grow A Garden -->
+                        <div class="group relative">
+                            <div class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
+                                <div class="flex items-center space-x-3 mb-6">
+                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-green-400 to-emerald-600 shadow-lg">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                                        </svg>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-white">Grow A Garden</h2>
+                                </div>
+                                <div class="space-y-3">
+                                    <a href="https://lockr.so/4DYYuUM6B" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gray-700/30 hover:bg-gray-700/50">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-gray-300 group-hover/script:text-white transition-colors">
+                                                    Grow a Garden Script GUI
+                                                </p>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                    <a href="https://lockr.so/N1qGm937R" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
+                                                    [☀️ UPDATED] Grow a Garden 🍏 Script
+                                                </p>
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
+                                                    ⭐ Featured
+                                                </span>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Jail Break Scripts -->
+                        <div class="group relative">
+                            <div class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
+                                <div class="flex items-center space-x-3 mb-6">
+                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-blue-400 to-cyan-600 shadow-lg">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                                        </svg>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-white">Jail Break Scripts</h2>
+                                </div>
+                                <div class="space-y-3">
+                                    <a href="https://lockr.so/gptWzc96C" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gray-700/30 hover:bg-gray-700/50">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-gray-300 group-hover/script:text-white transition-colors">
+                                                    Jail Break Script Updated - Auto Rob, Kill Aura, Arrest All, Infinite Money
+                                                </p>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                    <a href="https://lockr.so/SDHGynnRS" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
+                                                    Jail Break Script $1 Mil/Hour
+                                                </p>
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
+                                                    ⭐ Featured
+                                                </span>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Steal A Brainrot Scripts -->
+                        <div class="group relative">
+                            <div class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
+                                <div class="flex items-center space-x-3 mb-6">
+                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-600 shadow-lg">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-white">Steal A Brainrot Scripts</h2>
+                                </div>
+                                <div class="space-y-3">
+                                    <a href="https://lockr.so/VfWjvdobX" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
+                                                    Steal A Brainrot Script No Key *UPDATED*
+                                                </p>
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
+                                                    ⭐ Featured
+                                                </span>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                    <a href="https://www.ghostbin.cloud/b3x3i" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gray-700/30 hover:bg-gray-700/50">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-gray-300 group-hover/script:text-white transition-colors">
+                                                    Insane Steal a Brainrot Script | OP Steal, No-Clip, Secrets & More! No Key
+                                                </p>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Anime Saga Script -->
+                        <div class="group relative">
+                            <div class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
+                                <div class="flex items-center space-x-3 mb-6">
+                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-orange-400 to-red-600 shadow-lg">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                                        </svg>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-white">Anime Saga Script</h2>
+                                </div>
+                                <div class="space-y-3">
+                                    <a href="https://lockr.so/hWG2KF8Lt" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
+                                                    NEW Anime Saga Script (2025) – Auto Skill, Heal, Farm & More!
+                                                </p>
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
+                                                    ⭐ Featured
+                                                </span>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bubble Gum Simulator -->
+                        <div class="group relative">
+                            <div class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
+                                <div class="flex items-center space-x-3 mb-6">
+                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-pink-400 to-purple-600 shadow-lg">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1a3 3 0 000-6h-1m4 6V4a3 3 0 114 4M7 14a3 3 0 000-6m-4 6a3 3 0 000-6"></path>
+                                        </svg>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-white">Bubble Gum Simulator</h2>
+                                </div>
+                                <div class="space-y-3">
+                                    <a href="https://lockr.so/v8h2SRrFg" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
+                                                    OP Bubble Gum Simulator Infinity Script!
+                                                </p>
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
+                                                    ⭐ Featured
+                                                </span>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fisch Script -->
+                        <div class="group relative">
+                            <div class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
+                                <div class="flex items-center space-x-3 mb-6">
+                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-teal-400 to-blue-600 shadow-lg">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-white">Fisch Script</h2>
+                                </div>
+                                <div class="space-y-3">
+                                    <a href="https://lockr.so/rdEWOPCqG" target="_blank" rel="noopener noreferrer" class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
+                                                    Best Auto-Farm Fish, Auto-Sell, Shake & More
+                                                </p>
+                                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
+                                                    ⭐ Featured
+                                                </span>
+                                            </div>
+                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="text-center mt-16">
+                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-lg border border-gray-700/50">
+                            <span class="text-gray-400 text-sm">
+                                Created by <span class="text-blue-400 font-medium">@IEatToes0001</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showScripts() {
+            document.getElementById('welcome-screen').style.display = 'none';
+            document.getElementById('scripts-hub').style.display = 'block';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+</body>
+</html>
