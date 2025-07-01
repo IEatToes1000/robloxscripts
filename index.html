@@ -4,9 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Roblox Scripts Website</title>
+    <title>Roblox Scripts Hub - Premium Collection</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Custom Robux Cursor */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%23FFD700" stroke="%23FFA500" stroke-width="2"/><text x="12" y="16" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="%23000">R$</text></svg>') 12 12, auto;
+        }
+
+        a,
+        button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="12" fill="%23FFD700" stroke="%23FFA500" stroke-width="2"/><text x="14" y="18" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="%23000">R$</text></svg>') 14 14, pointer;
+        }
+
+        /* Mouse Trail Effect */
+        .mouse-trail {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: trailFade 0.8s ease-out forwards;
+            box-shadow: 0 0 10px #FFD700;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+        }
+
+        /* Floating Stars Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: #FFD700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+
+        .star:nth-child(odd) {
+            animation-delay: 1.5s;
+        }
+
+        .star:nth-child(3n) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.3;
+                transform: scale(0.8) rotate(0deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        /* Particle Trail Following Mouse */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #3B82F6;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            animation: particleFade 1s ease-out forwards;
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+        }
+
+        /* Grid Pattern */
         .bg-grid-pattern {
             background-image:
                 linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
@@ -14,89 +112,21 @@
             background-size: 50px 50px;
         }
 
-        .hover-scale-102:hover {
-            transform: scale(1.02);
+        /* Smooth Animations */
+        .transition-all {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        .animate-pulse {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        .group:hover .group-hover-translate-x-1 {
-            transform: translateX(0.25rem);
-        }
-
-        .group:hover .group-hover-opacity-50 {
-            opacity: 0.5;
-        }
-
-        .group:hover .group-hover-text-white {
-            color: white;
-        }
-
-        .group:hover .group-hover-scale-105 {
+        .hover\:scale-105:hover {
             transform: scale(1.05);
         }
 
-        .transition-all {
-            transition-property: all;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 300ms;
-        }
-
-        .transition-transform {
-            transition-property: transform;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 300ms;
-        }
-
-        .transition-colors {
-            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 300ms;
-        }
-
-        .transition-opacity {
-            transition-property: opacity;
-            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            transition-duration: 300ms;
-        }
-
-        .duration-300 {
-            transition-duration: 300ms;
-        }
-
-        .duration-500 {
-            transition-duration: 500ms;
+        .hover\:shadow-2xl:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
         .backdrop-blur-lg {
             backdrop-filter: blur(16px);
-        }
-
-        .mix-blend-multiply {
-            mix-blend-mode: multiply;
-        }
-
-        .filter {
-            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-        }
-
-        .blur-xl {
-            --tw-blur: blur(24px);
-            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
         }
 
         .bg-clip-text {
@@ -108,95 +138,64 @@
             color: transparent;
         }
 
-        .hover\:scale-105:hover {
-            transform: scale(1.05);
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        .hover\:shadow-2xl:hover {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        ::-webkit-scrollbar-track {
+            background: rgba(31, 41, 55, 0.5);
         }
 
-        .shadow-purple-500\/25 {
-            box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.25);
+        ::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.5);
+            border-radius: 4px;
         }
 
-        .hover\:shadow-purple-500\/25:hover {
-            box-shadow: 0 25px 50px -12px rgba(168, 85, 247, 0.25);
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.7);
         }
 
-        .focus\:ring-2:focus {
-            box-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        /* Line Clamp */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .focus\:ring-purple-500:focus {
-            --tw-ring-color: rgb(168 85 247);
-        }
-
-        .focus\:ring-offset-2:focus {
-            --tw-ring-offset-width: 2px;
-        }
-
-        .focus\:ring-offset-gray-900:focus {
-            --tw-ring-offset-color: rgb(17 24 39);
-        }
-
-        .focus\:outline-none:focus {
-            outline: 2px solid transparent;
+        /* Focus Styles */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 2px solid #6366f1;
             outline-offset: 2px;
         }
 
-        /* Confetti Particles */
-        .confetti-particle {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            pointer-events: none;
-            z-index: 9999;
-            border-radius: 50%;
-            animation: confetti-fall 2s linear forwards;
+        /* Robux Glow Effect */
+        .robux-glow {
+            animation: robuxGlow 2s ease-in-out infinite alternate;
         }
 
-        @keyframes confetti-fall {
+        @keyframes robuxGlow {
             0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
+                box-shadow: 0 0 20px #FFD700;
             }
 
             100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
+                box-shadow: 0 0 40px #FFD700, 0 0 60px #FFA500;
             }
-        }
-
-        /* Watermark Link Styling */
-        .watermark-link {
-            color: rgba(59, 130, 246, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.8em;
-            display: block;
-            margin-top: 4px;
-        }
-
-        .watermark-link:hover {
-            color: rgba(59, 130, 246, 1);
-            text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
-        }
-
-        /* Custom cursor trail */
-        body {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="%23a855f7" opacity="0.8"/><circle cx="10" cy="10" r="4" fill="%23ffffff"/></svg>') 10 10, auto;
         }
     </style>
 </head>
 
-<body>
-    <div class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
-        <!-- Roblox Avatar Background -->
-        <div class="roblox-avatar-bg"></div>
+<body class="overflow-x-hidden">
+    <!-- Floating Stars Background -->
+    <div class="stars" id="stars"></div>
 
+    <div class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 relative overflow-hidden">
         <!-- Animated background elements -->
-        <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden" style="z-index: 2;">
             <div
                 class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse">
             </div>
@@ -209,641 +208,687 @@
         </div>
 
         <!-- Grid pattern overlay -->
-        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        <div class="absolute inset-0 bg-grid-pattern opacity-5" style="z-index: 3;"></div>
 
-        <div class="relative z-10">
-            <!-- Welcome Screen -->
-            <div id="welcome-screen" class="min-h-screen flex items-center justify-center px-4">
-                <div class="text-center space-y-8 max-w-4xl mx-auto">
-                    <div class="space-y-4">
-                        <h1
-                            class="text-6xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
-                            Roblox Scripts
-                        </h1>
-                        <p class="text-xl md:text-2xl text-gray-300 font-light">
-                            Premium collection of the most powerful scripts
-                        </p>
-                    </div>
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="min-h-screen flex items-center justify-center px-4 relative z-10">
+            <div class="text-center space-y-8 max-w-4xl mx-auto">
+                <div class="space-y-4">
+                    <h1
+                        class="text-6xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+                        Roblox Scripts
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 font-light">
+                        Premium collection of the most powerful scripts
+                    </p>
+                </div>
 
-                    <div class="space-y-6">
-                        <div class="flex justify-center space-x-4 text-sm text-gray-400">
-                            <span class="flex items-center space-x-2">
-                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                <span>Always Updated</span>
-                            </span>
-                            <span class="flex items-center space-x-2">
-                                <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                                <span>No Key Required</span>
-                            </span>
-                            <span class="flex items-center space-x-2">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
-                                <span>Premium Quality</span>
-                            </span>
-                        </div>
-
-                        <button onclick="showScripts()"
-                            class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl hover:from-blue-500 hover:to-purple-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900">
-                            <span class="text-lg">Enter Hub</span>
-                            <svg class="w-5 h-5 ml-2 transition-transform group-hover-translate-x-1" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
+                    <div
+                        class="flex items-center justify-center space-x-3 p-4 rounded-2xl bg-gray-800/30 backdrop-blur-lg border border-gray-700/30">
+                        <div class="w-6 h-6 text-green-400">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
+                                </path>
                             </svg>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-30 group-hover-opacity-50 transition-opacity">
-                            </div>
-                        </button>
+                        </div>
+                        <span class="text-sm text-gray-300">Always Updated</span>
+                    </div>
+                    <div
+                        class="flex items-center justify-center space-x-3 p-4 rounded-2xl bg-gray-800/30 backdrop-blur-lg border border-gray-700/30">
+                        <div class="w-6 h-6 text-blue-400">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-300">No Key Required</span>
+                    </div>
+                    <div
+                        class="flex items-center justify-center space-x-3 p-4 rounded-2xl bg-gray-800/30 backdrop-blur-lg border border-gray-700/30">
+                        <div class="w-6 h-6 text-purple-400">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
+                                </path>
+                            </svg>
+                        </div>
+                        <span class="text-sm text-gray-300">Top Rated Quality</span>
                     </div>
                 </div>
+
+                <button onclick="showScripts()"
+                    class="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl hover:from-blue-500 hover:to-purple-500 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 robux-glow">
+                    <span class="text-lg">Enter Hub</span>
+                    <svg class="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </button>
             </div>
+        </div>
 
-            <!-- Scripts Hub -->
-            <div id="scripts-hub" class="min-h-screen py-12 px-4 sm:px-6 lg:px-8" style="display: none;">
-                <div class="max-w-7xl mx-auto">
-                    <!-- Header -->
-                    <div class="text-center mb-16">
-                        <h1
-                            class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
-                            Script Hub
-                        </h1>
-                        <p class="text-xl text-gray-300 font-light">
-                            Choose your adventure
-                        </p>
-                    </div>
+        <!-- Scripts Hub -->
+        <div id="scripts-hub" class="min-h-screen py-12 px-4 sm:px-6 lg:px-8 relative z-10" style="display: none;">
+            <div class="max-w-7xl mx-auto">
+                <!-- Header -->
+                <div class="text-center mb-16">
+                    <h1
+                        class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-4">
+                        Script Hub
+                    </h1>
+                    <p class="text-xl text-gray-300 font-light mb-8">
+                        Premium collection of Roblox scripts
+                    </p>
 
-                    <!-- Scripts Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- Grow A Garden -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div
-                                        class="p-3 rounded-2xl bg-gradient-to-r from-green-400 to-emerald-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <h2 class="text-xl font-bold text-white">Grow A Garden</h2>
-                                </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/4DYYuUM6B" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gray-700/30 hover:bg-gray-700/50">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-gray-300 group-hover/script:text-white transition-colors">
-                                                    Grow a Garden Script GUI + DarkSpawner
-                                                </p>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-
-                                    <a href="https://lockr.so/N1qGm937R" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    [☀️ UPDATED] Grow a Garden 🍏 Script
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Featured
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
+                    <!-- Search and Filter -->
+                    <div class="max-w-2xl mx-auto space-y-4">
+                        <div class="relative">
+                            <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            <input type="text" placeholder="Search scripts..." id="searchInput"
+                                class="w-full pl-12 pr-4 py-3 bg-gray-800/50 backdrop-blur-lg border border-gray-700/50 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
                         </div>
 
-                        <!-- Jail Break Scripts -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-blue-400 to-cyan-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="flex flex-wrap justify-center gap-2" id="categoryFilters">
+                            <button onclick="filterCategory('all')"
+                                class="category-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-blue-600 text-white">
+                                All Categories
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game Categories -->
+                <div class="space-y-16" id="categoriesContainer">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+
+                <!-- Discord Section -->
+                <div class="mt-20 mb-16">
+                    <div class="max-w-4xl mx-auto">
+                        <div
+                            class="relative bg-gradient-to-r from-indigo-600/20 to-purple-600/20 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-indigo-500/30 overflow-hidden">
+                            <!-- Background decoration -->
+                            <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
+                            <div class="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl">
+                            </div>
+                            <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl">
+                            </div>
+
+                            <div class="relative z-10 text-center space-y-8">
+                                <div class="space-y-4">
+                                    <div class="flex justify-center">
+                                        <div class="p-4 bg-indigo-600 rounded-2xl shadow-lg">
+                                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <h2 class="text-3xl md:text-4xl font-bold text-white">
+                                        Join the community! 
+                                    </h2>
+                                    <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                                        Connect with fellow Roblox enthusiasts, get exclusive scripts, and stay updated
+                                        with the latest releases!
+                                    </p>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
+                                    <div
+                                        class="flex flex-col items-center space-y-2 p-4 rounded-2xl bg-gray-800/30 backdrop-blur-lg border border-gray-700/30">
+                                        <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z">
+                                            </path>
+                                        </svg>
+                                        <span class="text-sm font-medium text-white">Active Community</span>
+                                        <span class="text-xs text-gray-400">1,000+ Members</span>
+                                    </div>
+                                    <div
+                                        class="flex flex-col items-center space-y-2 p-4 rounded-2xl bg-gray-800/30 backdrop-blur-lg border border-gray-700/30">
+                                        <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
                                             </path>
                                         </svg>
+                                        <span class="text-sm font-medium text-white">Safe & Secure</span>
+                                        <span class="text-xs text-gray-400">Verified Scripts</span>
                                     </div>
-                                    <h2 class="text-xl font-bold text-white">Jail Break Scripts</h2>
-                                </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/gptWzc96C" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gray-700/30 hover:bg-gray-700/50">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-gray-300 group-hover/script:text-white transition-colors">
-                                                    Jail Break Script Updated - Auto Rob, Kill Aura, Arrest All,
-                                                    Infinite Money
-                                                </p>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                    <a href="https://lockr.so/SDHGynnRS" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    Jail Break Script $1 Mil/Hour
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Featured
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Steal A Brainrot Scripts -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <div
+                                        class="flex flex-col items-center space-y-2 p-4 rounded-2xl bg-gray-800/30 backdrop-blur-lg border border-gray-700/30">
+                                        <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                        </svg>
-                                    </div>
-                                    <h2 class="text-xl font-bold text-white">Steal A Brainrot Scripts</h2>
-                                </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/VfWjvdobX" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    Steal A Brainrot Script No Key *UPDATED*
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Featured
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                    <a href="https://www.ghostbin.cloud/b3x3i" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gray-700/30 hover:bg-gray-700/50">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-gray-300 group-hover/script:text-white transition-colors">
-                                                    Insane Steal a Brainrot Script | OP Steal, No-Clip, Secrets & More!
-                                                    No Key
-                                                </p>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Murder Mystery Scripts -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                        </svg>
-                                    </div>
-                                    <h2 class="text-xl font-bold text-white">Murder Mystery 2 Scripts</h2>
-                                </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/mlFeBUQCC" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    MM2 Script Mobile BaikalHub - ESP, Teleport, Trolling and More
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Just Added!
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                    <a href="https://lockr.so/bSRnunhGh" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gray-700/30 hover:bg-gray-700/50">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-gray-300 group-hover/script:text-white transition-colors">
-                                                    Murder Mystery 2 Auto Farm Script
-                                                </p>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Anime Saga Script -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-orange-400 to-red-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                        </svg>
-                                    </div>
-                                    <h2 class="text-xl font-bold text-white">Anime Saga Scripts</h2>
-                                </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/hWG2KF8Lt" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    NEW Anime Saga Script (2025) – Auto Skill, Heal, Farm & More!
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Featured
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bubble Gum Simulator -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-pink-400 to-purple-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1a3 3 0 000-6h-1m4 6V4a3 3 0 114 4M7 14a3 3 0 000-6m-4 6a3 3 0 000-6">
+                                                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z">
                                             </path>
                                         </svg>
+                                        <span class="text-sm font-medium text-white">24/7 Support</span>
+                                        <span class="text-xs text-gray-400">Always Here</span>
                                     </div>
-                                    <h2 class="text-xl font-bold text-white">Bubble Gum Simulator</h2>
                                 </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/v8h2SRrFg" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    OP Bubble Gum Simulator Infinity Script!
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Featured
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Arsenal Saga Script -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-orange-400 to-red-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <a href="" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="group inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-300 bg-indigo-600 rounded-2xl hover:bg-indigo-500 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                                        </svg>
-                                    </div>
-                                    <h2 class="text-xl font-bold text-white">Arsenal Scripts</h2>
-                                </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/uyzhiGlaw" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    Arsenal RageBot, Aimbot, ESP, TriggerBot
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Just Updated!
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!-- Menu Scripts -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                        </svg>
-                                    </div>
-                                    <h2 class="text-xl font-bold text-white">Random GUI Scripts</h2>
-                                </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/9jrU79qwc" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    New Dog Script
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Featured
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                    <a href="https://lockr.so/eXHPd5HeV" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gray-700/30 hover:bg-gray-700/50">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-gray-300 group-hover/script:text-white transition-colors">
-                                                    FE Skididi Toilet Script
-                                                </p>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Fisch Script -->
-                        <div class="group relative">
-                            <div
-                                class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                                <div class="flex items-center space-x-3 mb-6">
-                                    <div class="p-3 rounded-2xl bg-gradient-to-r from-teal-400 to-blue-600 shadow-lg">
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                        </svg>
-                                    </div>
-                                    <h2 class="text-xl font-bold text-white">Fisch Script</h2>
-                                </div>
-                                <div class="space-y-3">
-                                    <a href="https://lockr.so/rdEWOPCqG" target="_blank" rel="noopener noreferrer"
-                                        class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                        <div class="flex items-center justify-between">
-                                            <div class="flex-1">
-                                                <p
-                                                    class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                    Best Auto-Farm Fish, Auto-Sell, Shake & More
-                                                </p>
-                                                <span
-                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                    ⭐ Featured
-                                                </span>
-                                            </div>
-                                            <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- External Script -->
-                    <div class="group relative">
-                        <div
-                            class="relative bg-gray-800/50 backdrop-blur-lg rounded-3xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
-                            <div class="flex items-center space-x-3 mb-6">
-                                <div class="p-3 rounded-2xl bg-gradient-to-r from-teal-400 to-blue-600 shadow-lg">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                    </svg>
-                                </div>
-                                <h2 class="text-xl font-bold text-white">External Script</h2>
-                            </div>
-                            <div class="space-y-3">
-                                <a href="https://lockr.so/CzueRLfo9" target="_blank" rel="noopener noreferrer"
-                                    class="group/script block relative p-4 rounded-xl transition-all duration-300 hover-scale-102 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:from-blue-600/30 hover:to-purple-600/30">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex-1">
-                                            <p
-                                                class="text-sm font-medium leading-relaxed text-blue-200 group-hover/script:text-white transition-colors">
-                                                Xane's Model Recreator
-                                            </p>
-                                            <span
-                                                class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-blue-500 to-purple-500 text-white mt-2">
-                                                ⭐ External
-                                            </span>
-                                        </div>
-                                        <svg class="w-4 h-4 text-gray-400 group-hover/script:text-white transition-colors ml-2 flex-shrink-0"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
                                             </path>
                                         </svg>
-                                    </div>
-                                </a>
+                                        Join The Discord Server
+                                    </a>
+                                    <a href="https://discord.gg/by2pUx2JQX" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="group inline-flex items-center justify-center px-8 py-4 font-bold text-indigo-400 transition-all duration-300 bg-transparent border-2 border-indigo-400 rounded-2xl hover:bg-indigo-400 hover:text-white hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900">
+                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z">
+                                            </path>
+                                        </svg>
+                                        Check out the community!
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
-
                 <!-- Footer -->
-                <div class="text-center mt-16">
+                <div class="text-center mt-16 pb-8">
                     <div
-                        class="inline-flex flex-col items-center px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-lg border border-gray-700/50">
-                        <span class="text-gray-400 text-sm">
+                        class="inline-flex flex-col items-center px-6 py-4 rounded-2xl bg-gray-800/30 backdrop-blur-lg border border-gray-700/30">
+                        <span class="text-gray-400 text-sm mb-2">
                             Created by <span class="text-blue-400 font-medium">@IEatToes0001</span>
                         </span>
                         <a href="https://www.youtube.com/@SocialFollowersGrowth" target="_blank"
-                            rel="noopener noreferrer" class="watermark-link">
-                            🔗 Visit My Profile
+                            rel="noopener noreferrer"
+                            class="text-blue-400 hover:text-blue-300 transition-colors duration-300 text-sm flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14">
+                                </path>
+                            </svg>
+                            Visit My Profile
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-
-
-
-
 
     <script>
+        // Game Categories Data
+        const gameCategories = [
+            {
+                id: 'grow-garden',
+                name: 'Grow A Garden',
+                description: 'Complete collection of garden growing automation scripts',
+                icon: '🌱',
+                gradient: 'bg-gradient-to-r from-green-400 to-emerald-600',
+                color: 'from-green-400 to-emerald-600',
+                scripts: [
+                    {name: 'Grow a Garden Script GUI + DarkSpawner', url: 'https://lockr.so/4DYYuUM6B', description: 'Complete automation with GUI interface and dark spawner features', feature: 'featured', rating: 4.8},
+                    {name: '[☀️ UPDATED] Grow a Garden 🍏 Script', url: 'https://lockr.so/N1qGm937R', description: 'Latest updated version with enhanced features', feature: 'updated', rating: 4.9},
+                    {name: 'Auto Plant & Harvest Pro', url: 'https://lockr.so/oPpObf4ap', description: 'Professional grade planting and harvesting automation', feature: 'top-rated', rating: 4.7},
+                    {name: 'Garden Money Farm Deluxe', url: 'https://lockr.so/0RZGredGS', description: 'Maximum profit optimization for garden activities', rating: 4.6},
+                    {name: 'Speed Growing Enhancer', url: 'https://lockr.so/8RoYyHz8J', description: 'Accelerate plant growth with advanced timing algorithms', feature: 'featured', rating: 4.5},
+                    {name: 'Multi-Plot Manager', url: 'https://lockr.so/Q3828ni24', description: 'Manage multiple garden plots simultaneously', rating: 4.4},
+                    {name: 'Rare Seed Collector', url: 'https://lockr.so/yG75wxxiL', description: 'Automatically collect and plant rare seeds', feature: 'top-rated', rating: 4.3},
+                    {name: 'Auto Planting, Auto Water', url: 'https://lockr.so/EgZ2YWoBu', description: 'Optimize planting based on weather conditions', rating: 4.2},
+                    {name: 'Summer Harvest Event', url: 'https://lockr.so/XUXGqvbwy', description: 'Gui, Summer Harvest Event', feature: 'updated', rating: 4.1},
+                    {name: 'Egg Predictor & Pet Spawner', url: 'https://lockr.so/boXZa4x4d', description: 'All-in-one solution for garden automation', feature: 'featured', rating: 4.0}
+                ]
+            },
+            {
+                id: 'jailbreak',
+                name: 'Jailbreak Scripts',
+                description: 'Ultimate collection of Jailbreak automation and enhancement scripts',
+                icon: '🚔',
+                gradient: 'bg-gradient-to-r from-blue-400 to-cyan-600',
+                color: 'from-blue-400 to-cyan-600',
+                scripts: [
+                    {name: 'Jailbreak Script Updated - Auto Rob, Kill Aura, Arrest All, Infinite Money', url: 'https://lockr.so/gptWzc96C', description: 'Complete Jailbreak automation with all features', feature: 'featured', rating: 4.9},
+                    {name: 'Jailbreak Script $1 Mil/Hour', url: 'https://lockr.so/SDHGynnRS', description: 'Guaranteed million dollar per hour farming system', feature: 'top-rated', rating: 4.8},
+                    {name: 'Auto Rob, Kill Aura, Arrest All', url: 'https://lockr.so/gptWzc96C', description: 'Intelligent auto-robbery with anti-detection', feature: 'updated', rating: 4.7},
+                    {name: 'Jailbreak [Auto Farm, Teleport, Inf Donut]', url: 'https://lockr.so/vepPBJbDE', description: 'Advanced evasion techniques and escape routes', rating: 4.6},
+                    {name: 'Jailbreak: WalkSpeed Change', url: 'https://lockr.so/4mCBTYFNJ', description: 'Enhance all vehicle speeds and handling', feature: 'featured', rating: 4.5},
+                    {name: 'Auto Arrest', url: 'https://lockr.so/HcvNubExF', description: 'Optimize bank robbery timing and strategy', rating: 4.4},
+                    {name: 'Jailbreak: Esp, Walkspeed, Kill Aura', url: 'https://lockr.so/HxgnCrh9Q', description: 'Automated prison escape with multiple routes', feature: 'top-rated', rating: 4.3},
+                    {name: 'Jailbreak: Gun Mods', url: 'https://lockr.so/r14TcznK4', description: 'Jailbreak: Gun Mods, Teleports, Robbery Notifiers Mobile Script', rating: 4.2},
+                    {name: 'Kill Aura Enhanced', url: 'https://lockr.so/zNDORpnot', description: 'Advanced combat system with smart targeting', feature: 'updated', rating: 4.1},
+                    {name: 'World Edit Jail Break', url: 'https://lockr.so/X5dpSj1GG', description: 'All Jailbreak features in one comprehensive script', feature: 'featured', rating: 4.0}
+                ]
+            },
+            {
+                id: 'steal-brainrot',
+                name: 'Steal A Brainrot',
+                description: 'Master the art of brainrot stealing with these advanced scripts',
+                icon: '🧠',
+                gradient: 'bg-gradient-to-r from-purple-400 to-pink-600',
+                color: 'from-purple-400 to-pink-600',
+                scripts: [
+                    {name: 'Steal A Brainrot Script No Key *UPDATED*', url: 'https://lockr.so/VfWjvdobX', description: 'Latest keyless version with enhanced stealing capabilities', feature: 'updated', rating: 4.8},
+                    {name: 'Insane Steal a Brainrot Script | OP Steal, No-Clip, Secrets & More! No Key', url: 'https://lockr.so/TUmUB8iAq', description: 'Most comprehensive brainrot stealing script available', feature: 'featured', rating: 4.9},
+                    {name: 'Auto Brainrot Collector', url: 'https://lockr.so/VfWjvdobX', description: 'Automatically collect brainrot items efficiently', feature: 'top-rated', rating: 4.7},
+                    {name: 'Stealth Steal Mode', url: 'https://lockr.so/rwgIMcq0A', description: 'Steal without detection using advanced stealth', rating: 4.6},
+                    {name: 'Brainrot Duplication Glitch', url: 'https://lockr.so/pSqqtJHBG', description: 'Duplicate stolen brainrot items safely', feature: 'featured', rating: 4.5},
+                    {name: 'Speed Steal Enhancer', url: 'https://lockr.so/ixfbRz1AR', description: 'Increase stealing speed and efficiency', rating: 4.4},
+                    {name: 'Legend Hub Hack', url: 'https://www.ghostbin.cloud/um63l', description: 'Built-in protection against bans while stealing', feature: 'top-rated', rating: 4.3},
+                    {name: 'Ghost Hub', url: 'https://lockr.so/PQbourkwP', description: 'Teleport-based stealing for maximum efficiency', rating: 4.2},
+                    {name: 'Laserhun’s Script', url: 'https://lockr.so/UI7vaZ0Bc', description: 'Locate all brainrot items on the map', feature: 'updated', rating: 4.1},
+                    {name: 'QuantumPulsar X', url: 'https://lockr.so/tXl8Lz4XR', description: 'Complete stealing solution with all features', feature: 'featured', rating: 4.0}
+                ]
+            },
+            {
+                id: 'murder-mystery',
+                name: 'Murder Mystery 2',
+                description: 'Dominate Murder Mystery 2 with ESP, auto-farm and advanced features',
+                icon: '🔪',
+                gradient: 'bg-gradient-to-r from-red-400 to-orange-600',
+                color: 'from-red-400 to-orange-600',
+                scripts: [
+                    {name: 'MM2 Script Mobile BaikalHub - ESP, Teleport, Trolling and More', url: 'https://lockr.so/mlFeBUQCC', description: 'Complete MM2 script with mobile support and all features', feature: 'featured', rating: 4.8},
+                    {name: 'Murder Mystery 2 Auto Farm Script', url: 'https://lockr.so/bSRnunhGh', description: 'Automated farming for coins and items', feature: 'updated', rating: 4.7},
+                    {name: 'MM2 ESP Ultimate', url: 'https://lockr.so/dEqDyIWU3', description: 'Advanced ESP system for all players and items', feature: 'top-rated', rating: 4.6},
+                    {name: 'Murder Mystery 2 yarhm', url: 'https://lockr.so/lD6hST6tH', description: 'Automatically shoot the murderer when sheriff', rating: 4.5},
+                    {name: 'Murder Mystery 2 - Kill Aura, Troll, ESP', url: 'https://lockr.so/PgeMcn1wV', description: 'Efficiently collect all coins on the map', feature: 'featured', rating: 4.4},
+                    {name: 'BaikalHub', url: 'https://lockr.so/ePMbr1Viv', description: 'Get instant notifications about murders', rating: 4.3},
+                    {name: 'Script MM2 Murder Mystery 2 (Onyx Hub)', url: 'https://lockr.so/z5CWzVt2I', description: 'Avoid being murdered with smart evasion', feature: 'top-rated', rating: 4.2},
+                    {name: 'MM2 Aimbot Elite', url: 'https://lockr.so/example30', description: 'Perfect aim assistance for sheriff role', rating: 4.1},
+                    {name: 'MM2: Esp, Auto Farm Coins', url: 'https://lockr.so/K0i4C6oOo', description: 'The ESP script for a game like Roblox enhances player experience by providing increased visibility', feature: 'updated', rating: 4.0},
+                    {name: 'MM2 Kill NPC: Kill All, Kill Aura', url: 'https://lockr.so/rEjexpyB1', description: 'Kill All this particular function has the ability to eliminate all individuals', feature: 'featured', rating: 3.9}
+                ]
+            },
+            {
+                id: 'anime-saga',
+                name: 'Anime Saga',
+                description: 'Master anime battles with auto-skill, farming and combat scripts',
+                icon: '⚔️',
+                gradient: 'bg-gradient-to-r from-orange-400 to-red-600',
+                color: 'from-orange-400 to-red-600',
+                scripts: [
+                    {name: 'NEW Anime Saga Script (2025) – Auto Skill, Heal, Farm & More!', url: 'https://lockr.so/hWG2KF8Lt', description: 'Latest 2025 version with all features', feature: 'updated', rating: 4.9},
+                    {name: 'AnimeSaga Script No Key', url: 'https://lockr.so/lFwecLvqA', description: 'Automated combat with intelligent AI decisions', feature: 'featured', rating: 4.8},
+                    {name: 'Script Anime Saga - Auto Farm GUI', url: 'https://lockr.so/X2OPhGdcV', description: 'Optimal skill point allocation and training', feature: 'top-rated', rating: 4.7},
+                    {name: 'OP FARM ALL DUNGEONS AND MORE', url: 'https://lockr.so/BC2EOB9C9', description: 'Automated boss fighting with perfect timing', rating: 4.6},
+                    {name: 'FAST DUNGEON, INFINITE RAIDS AND MORE!', url: 'https://lockr.so/adiXYDvCt', description: 'Rapidly increase your power level efficiently', feature: 'featured', rating: 4.5},
+                    {name: 'Auto Open Crates, Auto Collect Potion', url: 'https://lockr.so/K7JIkxm5j', description: 'Automatically complete all available quests', rating: 4.4},
+                    {name: 'Arena Battle Bot', url: 'https://lockr.so/yBxCyBdlh', description: 'Dominate arena battles with smart strategies', feature: 'top-rated', rating: 4.3},
+                    {name: 'Anime Saga mobile compatible', url: 'https://lockr.so/mXhVDENVH', description: 'Unlock all transformations instantly', rating: 4.2},
+                    {name: 'Energy Management Pro', url: 'https://lockr.so/KkvovAGH8', description: 'Optimize energy usage for maximum efficiency', feature: 'updated', rating: 4.1},
+                    {name: 'Anime Saga Ultimate', url: 'https://lockr.so/DWEnbUctG', description: 'Complete anime saga automation suite', feature: 'featured', rating: 4.0}
+                ]
+            },
+            {
+                id: 'bubble-gum',
+                name: 'Bubble Gum Simulator',
+                description: 'Infinite bubble power with these advanced automation scripts',
+                icon: '🫧',
+                gradient: 'bg-gradient-to-r from-pink-400 to-purple-600',
+                color: 'from-pink-400 to-purple-600',
+                scripts: [
+                    {name: 'OP Bubble Gum Simulator Infinity Script!', url: 'https://lockr.so/v8h2SRrFg', description: 'Infinite bubble power and features', feature: 'featured', rating: 4.8},
+                    {name: 'Mobile Script - Auto Collect, Auto Bubble, Auto Sell', url: 'https://lockr.so/18xyA6nED', description: 'Automated bubble blowing for maximum efficiency', feature: 'top-rated', rating: 4.7},
+                    {name: 'Hack Free GUI - Auto Farm, Auto Click, Auto Sell', url: 'https://lockr.so/Gu1Q5Z6k5', description: 'Collect all gum types automatically', feature: 'updated', rating: 4.6},
+                    {name: 'Auto Bubble, Auto Hatch Eggs, Auto Farm', url: 'https://lockr.so/59ZWNUx8l', description: 'Multiply your bubble size for better performance', rating: 4.5},
+                    {name: 'Bubble Gum Simulator The Best Auto Farm Script', url: 'https://lockr.so/qsLRQSKEE', description: 'Bubble Gum Simulator The Best Auto Farm Script', feature: 'featured', rating: 4.4},
+                    {name: 'Bubble Gum Simulator INFINITY Script Vertex Hub', url: 'https://lockr.so/sbPdDMC5q', description: 'Automatically collect and hatch pets', rating: 4.3},
+                    {name: 'Bubble Gum Simulator Script - Auto Farm, Auto Sell, Unlock All Islands', url: 'https://lockr.so/s01oPte4P', description: 'Maximize your bubble blowing power', feature: 'top-rated', rating: 4.2},
+                    {name: 'Bubble Gum Simulator GUI', url: 'https://lockr.so/irPvXnnkX', description: 'Unlock all islands instantly', rating: 4.1},
+                    {name: 'INFINITY Speed Hub X', url: 'https://lockr.so/ygGTwjn1e', description: 'Automatically win bubble competitions', feature: 'updated', rating: 4.0},
+                    {name: 'BGSI Script', url: 'https://lockr.so/xmIoHgSbj', description: 'Ultimate bubble gum simulator experience', feature: 'featured', rating: 3.9}
+                ]
+            },
+            {
+                id: 'arsenal',
+                name: 'Arsenal Scripts',
+                description: 'Dominate Arsenal with aimbot, ESP and advanced combat features',
+                icon: '🎯',
+                gradient: 'bg-gradient-to-r from-yellow-400 to-orange-600',
+                color: 'from-yellow-400 to-orange-600',
+                scripts: [
+                    {name: 'Arsenal RageBot, Aimbot, ESP, TriggerBot', url: 'https://lockr.so/uyzhiGlaw', description: 'Complete Arsenal combat suite with all features', feature: 'updated', rating: 4.8},
+                    {name: 'Arsenal Roblox Script GUI 2025 - Auto Aim, Kill All, ESP', url: 'https://lockr.so/RdJDzJ3Ss', description: 'Perfect accuracy aimbot with customizable settings', feature: 'featured', rating: 4.7},
+                    {name: 'Arsenal Script Roblox - TriggerBot, ESP, Aimbot, RageBot', url: 'https://lockr.so/gDVyfe1FB', description: 'See all enemies through walls with advanced ESP', feature: 'top-rated', rating: 4.6},
+                    {name: 'Arsenal New GUI Script 2025', url: 'https://lockr.so/36ulCzOY0', description: 'Eliminate weapon recoil completely', rating: 4.5},
+                    {name: 'Aimbot, ESP, Inf Jump Pastebin', url: 'https://lockr.so/j53GVzFaS', description: 'Move faster than any opponent', feature: 'featured', rating: 4.4},
+                    {name: 'Arsenal Script Ronix Hub 2025 - Aimbot, ESP, Inf Ammo', url: 'https://lockr.so/fVt2CYX3n', description: 'Automatically aim for headshots', rating: 4.3},
+                    {name: 'Arsenal Script ProjectWare GUI', url: 'https://lockr.so/tEohGhwvg', description: 'Unlock all weapons instantly', feature: 'top-rated', rating: 4.2},
+                    {name: 'Vapa v2', url: 'https://lockr.so/P82cuxZDB', description: 'Track and optimize your kill performance', rating: 4.1},
+                    {name: 'Arsenal Mobile Roblox Script', url: 'https://lockr.so/pmFZ38FCA', description: 'Protect against enemy aimbot', feature: 'updated', rating: 4.0},
+                    {name: 'Gun Mods, ESP, Aimbot, FPS Booster', url: 'https://lockr.so/Snb3ge5Cz', description: 'Ultimate Arsenal domination package', feature: 'featured', rating: 3.9}
+                ]
+            },
+            {
+                id: 'fisch',
+                name: 'Fisch Scripts',
+                description: 'Master fishing with auto-farm, sell and shake automation',
+                icon: '🐟',
+                gradient: 'bg-gradient-to-r from-teal-400 to-blue-600',
+                color: 'from-teal-400 to-blue-600',
+                scripts: [
+                    {name: 'Best Auto-Farm Fish, Auto-Sell, Shake & More', url: 'https://lockr.so/rdEWOPCqG', description: 'Complete fishing automation with all features', feature: 'featured', rating: 4.8},
+                    {name: 'Auto Fish, Auto MiniGame', url: 'https://lockr.so/QDyfB6Rd1', description: 'Advanced fish catching with perfect timing', feature: 'top-rated', rating: 4.7},
+                    {name: 'Fisch Script Mobile - Teleport, Anti Void, ESP', url: 'https://lockr.so/e3nVexogz', description: 'Automatically hunt for rare and legendary fish', feature: 'updated', rating: 4.6},
+                    {name: 'Fisch New Script LEGO', url: 'https://lockr.so/Mob0FkiQ1', description: 'Automatically upgrade fishing equipment', rating: 4.5},
+                    {name: 'Auto Farming GUI', url: 'https://lockr.so/ZvsdiLkFS', description: 'Use the best bait for each fishing location', feature: 'featured', rating: 4.4},
+                    {name: 'New Mobile Script Fisch', url: 'https://lockr.so/ucxZVzlUg', description: 'Best Fisch SCript Mobile Auto Cash, Auto Reel, Auto Shake', rating: 4.3},
+                    {name: 'Fisch Ronix Hub', url: 'https://lockr.so/uSrzJ4769', description: 'Optimize fish selling for maximum profit', feature: 'top-rated', rating: 4.2},
+                    {name: 'Speed Hub X', url: 'https://lockr.so/v7aaDBeaH', description: 'Change your speed and many other things', rating: 4.1},
+                    {name: 'Moon X', url: 'https://lockr.so/ynGpeeVRP', description: 'Automatically win fishing tournaments', feature: 'updated', rating: 4.0},
+                    {name: 'Lunor Free Version Fisch Script', url: 'https://lockr.so/xaiq1B9oK', description: 'Inf Coin, Fast Auto Fish', feature: 'featured', rating: 3.9}
+                ]
+            },
+            {
+                id: 'random-gui',
+                name: 'Random GUI Scripts',
+                description: 'Collection of unique and entertaining GUI scripts',
+                icon: '⚡',
+                gradient: 'bg-gradient-to-r from-indigo-400 to-purple-600',
+                color: 'from-indigo-400 to-purple-600',
+                scripts: [
+                    {name: 'New Dog Script', url: 'https://lockr.so/9jrU79qwc', description: 'Entertaining dog transformation script', feature: 'featured', rating: 4.6},
+                    {name: 'FE Skididi Toilet Script', url: 'https://lockr.so/eXHPd5HeV', description: 'Hilarious toilet-themed script for entertainment', feature: 'updated', rating: 4.5},
+                    {name: 'Rainbow Character Tool', url: 'https://lockr.so/BvxSGeBaW', description: 'Transform your character with rainbow effects', feature: 'top-rated', rating: 4.4},
+                    {name: 'Gravity Manipulator', url: 'https://lockr.so/BvxSGeBaW', description: 'Control gravity for fun physics experiments', rating: 4.3},
+                    {name: 'Size Changer Deluxe', url: 'https://lockr.so/hrH4Ry6dP', description: 'Change your character size dynamically', feature: 'featured', rating: 4.2},
+                    {name: 'Invisible Mode Toggle', url: 'https://lockr.so/Y6VUXZYBC', description: 'Toggle invisibility on and off', rating: 4.1},
+                    {name: 'Sound Effect Player', url: 'https://lockr.so/4Xv8Xf5uU', description: 'Play custom sound effects in-game', feature: 'top-rated', rating: 4.0},
+                    {name: 'Chat Spam Protector', url: 'https://lockr.so/ENW80oHdG', description: 'Advanced chat filtering and protection', rating: 3.9},
+                    {name: 'Emote Dance Master', url: 'https://lockr.so/KtnNXwMPv', description: 'Unlock all emotes and dances', feature: 'updated', rating: 3.8},
+                ]
+            },
+        ];
+
+        let currentFilter = 'all';
+
+        // Initialize the page
+        function init() {
+            createStars();
+            setupMouseEffects();
+            renderCategories();
+            setupSearch();
+            setupCategoryFilters();
+        }
+
+        // Create floating stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numStars = 50;
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = (Math.random() * 3 + 2) + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Setup mouse trail effects
+        function setupMouseEffects() {
+            let mouseTrailTimeout;
+
+            document.addEventListener('mousemove', function (e) {
+                // Create mouse trail
+                const trail = document.createElement('div');
+                trail.className = 'mouse-trail';
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                document.body.appendChild(trail);
+
+                setTimeout(() => {
+                    if (trail.parentNode) {
+                        trail.parentNode.removeChild(trail);
+                    }
+                }, 800);
+
+                // Create particles occasionally
+                if (Math.random() < 0.1) {
+                    createParticle(e.clientX, e.clientY);
+                }
+            });
+
+            // Create burst on click
+            document.addEventListener('click', function (e) {
+                for (let i = 0; i < 8; i++) {
+                    setTimeout(() => {
+                        createParticle(
+                            e.clientX + (Math.random() - 0.5) * 30,
+                            e.clientY + (Math.random() - 0.5) * 30
+                        );
+                    }, i * 50);
+                }
+            });
+        }
+
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+
+            const colors = ['#3B82F6', '#8B5CF6', '#EC4899', '#10B981', '#F59E0B', '#FFD700'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 1000);
+        }
+
+        // Show scripts hub
         function showScripts() {
             document.getElementById('welcome-screen').style.display = 'none';
             document.getElementById('scripts-hub').style.display = 'block';
-            document.body.style.overflow = 'auto';
         }
 
-        // Confetti cursor effect
-        let confettiColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd', '#98d8c8'];
-        let confettiCount = 0;
-        let maxConfetti = 50;
+        // Render categories
+        function renderCategories() {
+            const container = document.getElementById('categoriesContainer');
+            const filteredCategories = gameCategories.filter(category => {
+                if (currentFilter !== 'all' && category.id !== currentFilter) return false;
+                return true;
+            });
 
-        function createConfetti(x, y) {
-            if (confettiCount >= maxConfetti) return;
+            container.innerHTML = filteredCategories.map(category => `
+                <div class="space-y-8">
+                    <div class="text-center">
+                        <div class="flex items-center justify-center space-x-4 mb-4">
+                            <div class="p-4 rounded-2xl ${category.gradient} shadow-lg text-4xl">
+                                ${category.icon}
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">
+                                ${category.name}
+                            </h2>
+                        </div>
+                        <p class="text-gray-400 max-w-2xl mx-auto">
+                            ${category.description}
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        ${category.scripts.map(script => createScriptCard(script, category.color)).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
 
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti-particle';
-            confetti.style.left = x + 'px';
-            confetti.style.top = y + 'px';
-            confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-
-            // Random size and shape
-            const size = Math.random() * 6 + 4;
-            confetti.style.width = size + 'px';
-            confetti.style.height = size + 'px';
-
-            // Random shape (circle or square)
-            if (Math.random() > 0.5) {
-                confetti.style.borderRadius = '50%';
-            }
-
-            document.body.appendChild(confetti);
-            confettiCount++;
-
-            // Remove confetti after animation
-            setTimeout(() => {
-                if (confetti.parentNode) {
-                    confetti.parentNode.removeChild(confetti);
-                    confettiCount--;
+        // Create script card
+        function createScriptCard(script, categoryColor) {
+            const getFeatureIcon = (feature) => {
+                switch (feature) {
+                    case 'featured': return '⭐';
+                    case 'top-rated': return '👑';
+                    case 'updated': return '⚡';
+                    default: return '⭐';
                 }
-            }, 2000);
+            };
+
+            const getFeatureColor = (feature) => {
+                switch (feature) {
+                    case 'featured': return 'from-blue-500 to-purple-500';
+                    case 'top-rated': return 'from-yellow-500 to-orange-500';
+                    case 'updated': return 'from-green-500 to-emerald-500';
+                    default: return 'from-blue-500 to-purple-500';
+                }
+            };
+
+            const getFeatureText = (feature) => {
+                switch (feature) {
+                    case 'featured': return 'Featured';
+                    case 'top-rated': return 'Top Rated';
+                    case 'updated': return 'Updated';
+                    default: return 'Featured';
+                }
+            };
+
+            return `
+                <div class="group relative">
+                    <a href="${script.url}" target="_blank" rel="noopener noreferrer" class="block relative bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 transition-all duration-500 hover:border-gray-600/50 hover:bg-gray-800/70 hover:scale-105 hover:shadow-2xl">
+                        <div class="space-y-4">
+                            <div class="flex items-start justify-between">
+                                <h3 class="text-lg font-semibold text-white leading-tight line-clamp-2 flex-1">
+                                    ${script.name}
+                                </h3>
+                                <svg class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors flex-shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </div>
+                            
+                            ${script.description ? `
+                                <p class="text-sm text-gray-400 line-clamp-2">
+                                    ${script.description}
+                                </p>
+                            ` : ''}
+                            
+                            <div class="flex items-center justify-between">
+                                ${script.feature ? `
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${getFeatureColor(script.feature)} text-white">
+                                        ${getFeatureIcon(script.feature)}
+                                        <span class="ml-1">${getFeatureText(script.feature)}</span>
+                                    </span>
+                                ` : '<div></div>'}
+                                
+                                ${script.rating ? `
+                                    <div class="flex items-center space-x-1">
+                                        <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                        <span class="text-sm text-gray-300">${script.rating}</span>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                        
+                        <div class="absolute inset-0 bg-gradient-to-r ${categoryColor} rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10"></div>
+                    </a>
+                </div>
+            `;
         }
 
-        // Throttle confetti creation
-        let lastConfettiTime = 0;
-        document.addEventListener('mousemove', function (e) {
-            const now = Date.now();
-            if (now - lastConfettiTime > 100) { // Create confetti every 100ms
-                createConfetti(e.clientX, e.clientY);
-                lastConfettiTime = now;
-            }
-        });
+        // Setup search functionality
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', function (e) {
+                const searchTerm = e.target.value.toLowerCase();
+                filterScripts(searchTerm);
+            });
+        }
 
-        // Create burst of confetti on click
-        document.addEventListener('click', function (e) {
-            for (let i = 0; i < 5; i++) {
-                setTimeout(() => {
-                    createConfetti(
-                        e.clientX + (Math.random() - 0.5) * 20,
-                        e.clientY + (Math.random() - 0.5) * 20
-                    );
-                }, i * 50);
+        // Setup category filters
+        function setupCategoryFilters() {
+            const filtersContainer = document.getElementById('categoryFilters');
+
+            // Add category filter buttons
+            gameCategories.forEach(category => {
+                const button = document.createElement('button');
+                button.onclick = () => filterCategory(category.id);
+                button.className = 'category-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-gray-800/50 text-gray-300 hover:bg-gray-700/50';
+                button.textContent = category.name;
+                filtersContainer.appendChild(button);
+            });
+        }
+
+        // Filter by category
+        function filterCategory(categoryId) {
+            currentFilter = categoryId;
+
+            // Update button states
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.className = 'category-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-gray-800/50 text-gray-300 hover:bg-gray-700/50';
+            });
+
+            event.target.className = 'category-btn px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-blue-600 text-white';
+
+            renderCategories();
+        }
+
+        // Filter scripts by search term
+        function filterScripts(searchTerm) {
+            if (!searchTerm) {
+                renderCategories();
+                return;
             }
-        });
+
+            const container = document.getElementById('categoriesContainer');
+            const filteredCategories = gameCategories.filter(category => {
+                if (currentFilter !== 'all' && category.id !== currentFilter) return false;
+                return category.name.toLowerCase().includes(searchTerm) ||
+                    category.scripts.some(script =>
+                        script.name.toLowerCase().includes(searchTerm)
+                    );
+            }).map(category => ({
+                ...category,
+                scripts: category.scripts.filter(script =>
+                    script.name.toLowerCase().includes(searchTerm)
+                )
+            })).filter(category => category.scripts.length > 0);
+
+            container.innerHTML = filteredCategories.map(category => `
+                <div class="space-y-8">
+                    <div class="text-center">
+                        <div class="flex items-center justify-center space-x-4 mb-4">
+                            <div class="p-4 rounded-2xl ${category.gradient} shadow-lg text-4xl">
+                                ${category.icon}
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-bold text-white">
+                                ${category.name}
+                            </h2>
+                        </div>
+                        <p class="text-gray-400 max-w-2xl mx-auto">
+                            ${category.description}
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        ${category.scripts.map(script => createScriptCard(script, category.color)).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 
